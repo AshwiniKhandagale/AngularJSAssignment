@@ -17,12 +17,10 @@ App.controller('CustomerController', [
             console.log(' $scope.customerList: ',  $scope.customerList);
             
         };
-
-        var onError = function (data, status, headers, config) {
-            $scope.error = status;
-        }
         
-        customerService.getData().then(onSuccess).onError;
+        //Get All Customer Data
+        customerService.getData().then(onSuccess);
+         //Select All customer
         $scope.toggleAll = function() {
             var toggleStatus = $scope.isAllSelected;
             angular.forEach($scope.customerList, function(itm){ itm.selected = toggleStatus; });
@@ -32,6 +30,7 @@ App.controller('CustomerController', [
          $scope.optionToggled = function(){
            $scope.isAllSelected = $scope.customerList.every(function(itm){ return itm.selected; })
          }
+          //Delete one or more customer
          $scope.deleteCustomers = function(){
             var newCustomerListList=[];
             angular.forEach($scope.customerList,function(v){
